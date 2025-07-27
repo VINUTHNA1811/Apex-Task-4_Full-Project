@@ -1,0 +1,2473 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vinuthna's Portfolio</title>
+    <style>
+        /* General Styles - from home.html */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #021151 0%, #11c5d2 100%);
+            min-height: 100vh;
+        }
+
+        .navbar {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 1rem 0;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-brand {
+            font-size: 1.5rem;
+            font-weight: bold;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .nav-right {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+            transition: color 0.3s ease;
+            cursor: pointer;
+        }
+
+        .nav-links a:hover {
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .back-btn {
+            background: rgba(255, 255, 255, 0.2);
+            color: rgb(3, 168, 233);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            padding: 0.5rem 1rem;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.9rem;
+        }
+
+        .back-btn:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: translateY(-2px);
+        }
+
+        .dark-mode-toggle {
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            color: white;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+        }
+
+        .dark-mode-toggle:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+        }
+
+        .main-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 3rem 2rem;
+        }
+
+        .hero-section {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .hero-title {
+            font-size: 3rem;
+            color: white;
+            margin-bottom: 1rem;
+            font-weight: 300;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .hero-subtitle {
+            font-size: 1.2rem;
+            color: rgba(255, 255, 255, 0.9);
+            max-width: 600px;
+            margin: 0 auto 2rem;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.2);
+        }
+
+        .cards-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .card {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 2rem;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            cursor: pointer;
+            text-align: center;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.2);
+        }
+
+        .card-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .card-title {
+            font-size: 1.5rem;
+            color: #2c3e50;
+            margin-bottom: 1rem;
+        }
+
+        .card-description {
+            color: #666;
+            line-height: 1.6;
+        }
+
+        .portfolio-card {
+            border-top: 4px solid #4facfe;
+        }
+        
+        .portfolio-card .card-icon {
+            background: linear-gradient(45deg, #4facfe, #00f2fe);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .todo-card {
+            border-top: 4px solid #43e97b;
+        }
+        
+        .todo-card .card-icon {
+            background: linear-gradient(45deg, #43e97b, #38f9d7);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .store-card {
+            border-top: 4px solid #fa709a;
+        }
+        
+        .store-card .card-icon {
+            background: linear-gradient(45deg, #fa709a, #fee140);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        /* Page management styles */
+        .page {
+            display: none;
+        }
+
+        .page.active {
+            display: block;
+        }
+
+        /* Contact Section Styles */
+        .contact-section {
+            margin: 4rem 0;
+            padding: 3rem 0;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            color: white;
+            text-align: center;
+            margin-bottom: 2rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .contact-content {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 3rem;
+            text-align: center;
+            box-shadow: 0 12px 40px rgba(0,0,0,0.15);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .contact-content::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #667eea, #764ba2, #f093fb, #f5576c);
+            background-size: 400% 400%;
+            animation: gradientShift 3s ease infinite;
+        }
+
+        @keyframes gradientShift {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+
+        .contact-intro {
+            font-size: 1.2rem;
+            color: #100e32;
+            margin-bottom: 2.5rem;
+            line-height: 1.7;
+            font-weight: 300;
+        }
+
+        .contact-links {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            max-width: 400px;
+            margin: 0 auto;
+        }
+
+        .contact-link {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.6rem;
+            text-decoration: none;
+            background: rgba(255, 255, 255, 0.9);
+            padding: 0.8rem 1.2rem;
+            border-radius: 12px;
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            color: #333;
+            font-weight: 500;
+            font-size: 0.9rem;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            border: 2px solid transparent;
+            position: relative;
+            overflow: hidden;
+            min-width: 100px;
+        }
+
+        .contact-link:hover {
+            transform: translateY(-3px) scale(1.02);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+        }
+
+        .contact-link.linkedin:hover {
+            background: linear-gradient(135deg, #0077b5, #00a0dc);
+            color: white;
+            box-shadow: 0 8px 25px rgba(0, 119, 181, 0.3);
+        }
+
+        .contact-link.github:hover {
+            background: linear-gradient(135deg, #333, #24292e);
+            color: white;
+            box-shadow: 0 8px 25px rgba(51, 51, 51, 0.3);
+        }
+
+        .contact-link.email:hover {
+            background: linear-gradient(135deg, #ea4335, #d93025);
+            color: white;
+            box-shadow: 0 8px 25px rgba(234, 67, 53, 0.3);
+        }
+
+        /* Dark mode styles - from home.html */
+        .dark-mode {
+            background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+            color: #e0e0e0;
+        }
+
+        .dark-mode .navbar {
+            background: rgba(45, 45, 45, 0.95);
+        }
+
+        .dark-mode .nav-brand {
+            background: linear-gradient(45deg, #74b9ff, #0984e3);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .dark-mode .nav-links a {
+            color: #e0e0e0;
+        }
+
+        .dark-mode .nav-links a:hover {
+            background: linear-gradient(45deg, #74b9ff, #0984e3);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .dark-mode .card {
+            background: rgba(45, 45, 45, 0.95);
+            color: #e0e0e0;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .dark-mode .hero-title {
+            color: #e0e0e0;
+        }
+
+        .dark-mode .card-title {
+            color: #e0e0e0;
+        }
+
+        .dark-mode .section-title {
+            color: #e0e0e0;
+        }
+
+        .dark-mode .contact-intro {
+            color: #ccc;
+        }
+
+        .dark-mode .contact-link {
+            background: rgba(60, 60, 60, 0.8);
+            color: #e0e0e0;
+        }
+
+        /* Portfolio Specific Styles - from home.html */
+        .portfolio-content {
+            display: none;
+        }
+
+        .portfolio-content.active {
+            display: block;
+        }
+
+        .about-content {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 3rem;
+            box-shadow: 0 12px 40px rgba(0,0,0,0.15);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            margin-bottom: 2rem;
+        }
+
+        .about-text {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: #555;
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .skills-section {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 2.5rem;
+            box-shadow: 0 12px 40px rgba(0,0,0,0.15);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .skills-title {
+            font-size: 1.5rem;
+            color: #2c3e50;
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .skill-category {
+            text-align: center;
+        }
+
+        .skill-category h4 {
+            color: #667eea;
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+        }
+
+        .skill-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            justify-content: center;
+        }
+
+        .skill-tag {
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            color: white;
+            padding: 0.4rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+
+        .project-card {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 2rem;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .project-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.2);
+        }
+
+        .project-card h3 {
+            color: #2c3e50;
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+        }
+
+        .project-card p {
+            color: #666;
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+        }
+
+        .project-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            color: white;
+            text-decoration: none;
+            padding: 0.6rem 1.2rem;
+            border-radius: 25px;
+            transition: all 0.3s ease;
+            font-weight: 500;
+            font-size: 0.9rem;
+        }
+
+        .project-link:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+
+        .typed-text {
+            color: var(--accent-color, #8a79ff);
+            font-weight: 500;
+            height: 30px;
+            display: inline-block;
+        }
+
+        /* Store App Styles - from home.html */
+        .store-app {
+            background: linear-gradient(135deg, #710abb 0%, #c41c64 90%);
+            min-height: 100vh;
+        }
+
+        .store-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .search-section {
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .search-input {
+            padding: 0.8rem 1.2rem;
+            border: 2px solid rgba(250, 112, 154, 0.3);
+            border-radius: 25px;
+            font-size: 1rem;
+            background: rgba(255, 255, 255, 0.9);
+            min-width: 250px;
+        }
+
+        .search-input:focus {
+            outline: none;
+            border-color: #fa709a;
+            box-shadow: 0 0 0 3px rgba(250, 112, 154, 0.1);
+        }
+
+        .category-filter {
+            padding: 0.8rem 1rem;
+            border: 2px solid rgba(250, 112, 154, 0.3);
+            border-radius: 15px;
+            background: rgba(255, 255, 255, 0.9);
+            cursor: pointer;
+        }
+
+        .cart-btn {
+            background: linear-gradient(45deg, #fa709a, #fee140);
+            color: white;
+            border: none;
+            padding: 0.8rem 1.5rem;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .cart-count {
+            position: absolute;
+            top: -8px;
+            right: -8px;
+            background: #ff4757;
+            color: white;
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.8rem;
+            font-weight: bold;
+        }
+
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .product-card {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 1.5rem;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.2);
+        }
+
+        .product-image {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 10px;
+            margin-bottom: 1rem;
+        }
+
+        .product-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #2c3e50;
+            margin-bottom: 0.5rem;
+            line-height: 1.4;
+        }
+
+        .product-category {
+            color: #666;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 0.5rem;
+        }
+
+        .product-price {
+            font-size: 1.3rem;
+            font-weight: bold;
+            color: #fa709a;
+            margin-bottom: 1rem;
+        }
+
+        .product-rating {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .stars {
+            color: #ffd700;
+        }
+
+        .add-to-cart-btn {
+            width: 100%;
+            background: linear-gradient(45deg, #fa709a, #fee140);
+            color: white;
+            border: none;
+            padding: 0.8rem;
+            border-radius: 10px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .add-to-cart-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+
+        .add-to-cart-btn:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .cart-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+        }
+
+        .cart-content {
+            background: white;
+            border-radius: 20px;
+            padding: 2rem;
+            max-width: 600px;
+            width: 90%;
+            max-height: 80vh;
+            overflow-y: auto;
+        }
+
+        .cart-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1rem;
+            border-bottom: 1px solid #eee;
+        }
+
+        .cart-item-image {
+            width: 60px;
+            height: 60px;
+            object-fit: cover;
+            border-radius: 8px;
+        }
+
+        .cart-item-details {
+            flex: 1;
+        }
+
+        .cart-item-title {
+            font-weight: 600;
+            margin-bottom: 0.25rem;
+        }
+
+        .cart-item-price {
+            color: #fa709a;
+            font-weight: bold;
+        }
+
+        .quantity-controls {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .quantity-btn {
+            background: #f0f0f0;
+            border: none;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .total-section {
+            margin-top: 1rem;
+            padding-top: 1rem;
+            border-top: 2px solid #eee;
+            text-align: center;
+        }
+
+        .total-amount {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #2c3e50;
+            margin-bottom: 1rem;
+        }
+
+        .checkout-btn {
+            background: linear-gradient(45deg, #fa709a, #fee140);
+            color: white;
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .loading {
+            text-align: center;
+            padding: 2rem;
+            color: #666;
+        }
+
+        /* Todo App Specific Styles - from todo.html */
+        .todo-app {
+            background: linear-gradient(135deg, #550a8e 0%, #08519e 100%); /* Adjusted from todo.html to match home.html body style */
+            min-height: 100vh;
+            color: #333;
+        }
+
+        .todo-app .navbar .nav-brand {
+            background: linear-gradient(45deg, #43e97b, #38f9d7);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .todo-app .back-btn {
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .todo-app .dark-mode-toggle {
+            background: linear-gradient(45deg, #43e97b, #38f9d7);
+        }
+
+        .todo-app .hero-title {
+            color: white;
+        }
+
+        .todo-app .hero-subtitle {
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        .mode-tabs {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 3rem;
+        }
+
+        .tab-btn {
+            background: rgba(255, 255, 255, 0.9);
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            color: #333;
+        }
+
+        .tab-btn.active {
+            background: linear-gradient(45deg, #43e97b, #38f9d7);
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.2);
+        }
+
+        .tab-btn:hover:not(.active) {
+            background: rgba(255, 255, 255, 1);
+            transform: translateY(-2px);
+        }
+
+        .content-section {
+            display: none;
+        }
+
+        .content-section.active {
+            display: block;
+        }
+
+        .todo-container {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 2rem;
+            box-shadow: 0 12px 40px rgba(0,0,0,0.15);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .todo-input-section {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .todo-input {
+            flex: 1;
+            padding: 1rem;
+            border: 2px solid rgba(67, 233, 123, 0.3);
+            border-radius: 25px;
+            font-size: 1rem;
+            background: rgba(255, 255, 255, 0.8);
+            transition: all 0.3s ease;
+            min-width: 200px;
+        }
+
+        .todo-input:focus {
+            outline: none;
+            border-color: #43e97b;
+            background: white;
+            box-shadow: 0 0 0 3px rgba(67, 233, 123, 0.1);
+        }
+
+        .priority-select {
+            padding: 1rem;
+            border: 2px solid rgba(67, 233, 123, 0.3);
+            border-radius: 15px;
+            background: rgba(255, 255, 255, 0.8);
+            font-size: 0.9rem;
+            cursor: pointer;
+        }
+
+        .add-todo-btn {
+            background: linear-gradient(45deg, #43e97b, #38f9d7);
+            color: white;
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+
+        .add-todo-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+        }
+
+        .todo-filters {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .filter-btn {
+            background: rgba(255, 255, 255, 0.7);
+            border: 2px solid rgba(67, 233, 123, 0.3);
+            padding: 0.6rem 1.2rem;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+            color: #333;
+        }
+
+        .filter-btn.active {
+            background: linear-gradient(45deg, #43e97b, #38f9d7);
+            color: white;
+            border-color: transparent;
+        }
+
+        .filter-btn:hover:not(.active) {
+            background: rgba(255, 255, 255, 0.9);
+            border-color: #43e97b;
+        }
+
+        .todo-list {
+            max-height: 400px;
+            overflow-y: auto;
+        }
+
+        .todo-item {
+            background: rgba(255, 255, 255, 0.8);
+            border-radius: 15px;
+            padding: 1rem;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            transition: all 0.3s ease;
+            border-left: 4px solid transparent;
+        }
+
+        .todo-item:hover {
+            background: rgba(255, 255, 255, 0.95);
+            transform: translateX(5px);
+        }
+
+        .todo-item.completed {
+            opacity: 0.7;
+            text-decoration: line-through;
+        }
+
+        .todo-item.high-priority {
+            border-left-color: #ff4757;
+        }
+
+        .todo-item.medium-priority {
+            border-left-color: #ffa502;
+        }
+
+        .todo-item.low-priority {
+            border-left-color: #2ed573;
+        }
+
+        .todo-checkbox {
+            width: 20px;
+            height: 20px;
+            cursor: pointer;
+        }
+
+        .todo-text {
+            flex: 1;
+            font-size: 1rem;
+        }
+
+        .todo-priority {
+            background: rgba(67, 233, 123, 0.2);
+            color: #2c3e50;
+            padding: 0.3rem 0.8rem;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            font-weight: 500;
+        }
+
+        .todo-actions {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .todo-btn {
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-size: 1.2rem;
+            padding: 0.3rem;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+        }
+
+        .todo-btn:hover {
+            background: rgba(67, 233, 123, 0.2);
+        }
+
+        .delete-btn:hover {
+            background: rgba(255, 71, 87, 0.2);
+        }
+
+        .notes-container {
+            display: grid;
+            gap: 2rem;
+            grid-template-columns: 1fr 2fr;
+            height: 600px;
+        }
+
+        .notes-sidebar {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 1.5rem;
+            box-shadow: 0 12px 40px rgba(0,0,0,0.15);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            overflow-y: auto;
+        }
+
+        .new-note-btn {
+            width: 100%;
+            background: linear-gradient(45deg, #43e97b, #38f9d7);
+            color: white;
+            border: none;
+            padding: 1rem;
+            border-radius: 15px;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+
+        .new-note-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+        }
+
+        .notes-list {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .note-item {
+            background: rgba(255, 255, 255, 0.7);
+            border-radius: 10px;
+            padding: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border-left: 3px solid transparent;
+        }
+
+        .note-item:hover {
+            background: rgba(255, 255, 255, 0.9);
+            transform: translateX(3px);
+            border-left-color: #43e97b;
+        }
+
+        .note-item.active {
+            background: linear-gradient(45deg, rgba(67, 233, 123, 0.2), rgba(56, 249, 215, 0.2));
+            border-left-color: #43e97b;
+        }
+
+        .note-title {
+            font-weight: 600;
+            margin-bottom: 0.3rem;
+            color: #2c3e50;
+        }
+
+        .note-preview {
+            font-size: 0.85rem;
+            color: #666;
+            line-height: 1.4;
+        }
+
+        .note-date {
+            font-size: 0.75rem;
+            color: #999;
+            margin-top: 0.3rem;
+        }
+
+        .note-editor {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 2rem;
+            box-shadow: 0 12px 40px rgba(0,0,0,0.15);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .editor-header {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+            align-items: center;
+        }
+
+        .note-title-input {
+            flex: 1;
+            border: none;
+            font-size: 1.5rem;
+            font-weight: 600;
+            background: transparent;
+            color: #2c3e50;
+            padding: 0.5rem;
+            border-bottom: 2px solid rgba(67, 233, 123, 0.3);
+            transition: border-color 0.3s ease;
+        }
+
+        .note-title-input:focus {
+            outline: none;
+            border-bottom-color: #43e97b;
+        }
+
+        .editor-actions {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .editor-btn {
+            background: rgba(67, 233, 123, 0.1);
+            border: 1px solid rgba(67, 233, 123, 0.3);
+            color: #2c3e50;
+            padding: 0.5rem 1rem;
+            border-radius: 10px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+        }
+
+        .editor-btn:hover {
+            background: rgba(67, 233, 123, 0.2);
+            border-color: #43e97b;
+        }
+
+        .save-btn {
+            background: linear-gradient(45deg, #43e97b, #38f9d7);
+            color: white;
+            border: none;
+        }
+
+        .save-btn:hover {
+            background: linear-gradient(45deg, #38d86a, #2dd3bf);
+        }
+
+        .note-content {
+            flex: 1;
+            border: none;
+            resize: none;
+            font-size: 1rem;
+            line-height: 1.6;
+            background: transparent;
+            color: #333;
+            padding: 1rem;
+            border-radius: 10px;
+            background: rgba(255, 255, 255, 0.5);
+            transition: background 0.3s ease;
+        }
+
+        .note-content:focus {
+            outline: none;
+            background: rgba(255, 255, 255, 0.8);
+        }
+
+        .empty-state {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100%;
+            color: #666;
+            text-align: center;
+        }
+
+        .empty-state-icon {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            opacity: 0.5;
+        }
+
+        /* Dark mode styles for Todo App */
+        .dark-mode .todo-app {
+            background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+            color: #e0e0e0;
+        }
+
+        .dark-mode .todo-app .navbar {
+            background: rgba(45, 45, 45, 0.95);
+        }
+
+        .dark-mode .todo-app .nav-brand {
+            background: linear-gradient(45deg, #74b9ff, #0984e3);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .dark-mode .todo-container,
+        .dark-mode .notes-sidebar,
+        .dark-mode .note-editor {
+            background: rgba(45, 45, 45, 0.95);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: #e0e0e0;
+        }
+
+        .dark-mode .todo-item,
+        .dark-mode .note-item {
+            background: rgba(60, 60, 60, 0.8);
+            color: #e0e0e0;
+        }
+
+        .dark-mode .todo-input,
+        .dark-mode .priority-select,
+        .dark-mode .note-title-input,
+        .dark-mode .note-content {
+            background: rgba(60, 60, 60, 0.8);
+            border-color: rgba(255, 255, 255, 0.2);
+            color: #e0e0e0;
+        }
+
+        .dark-mode .note-title {
+            color: #e0e0e0;
+        }
+
+        .dark-mode .todo-app .hero-title {
+            color: #e0e0e0;
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 768px) {
+            .nav-container {
+                padding: 0 1rem;
+                flex-wrap: wrap;
+            }
+
+            .nav-right {
+                gap: 1rem;
+            }
+
+            .hero-title {
+                font-size: 2.5rem;
+            }
+
+            .main-container {
+                padding: 2rem 1rem;
+            }
+
+            .cards-container {
+                grid-template-columns: 1fr;
+            }
+
+            .contact-links {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .todo-input-section {
+                flex-direction: column;
+            }
+
+            .todo-input {
+                min-width: 100%;
+            }
+
+            .search-section {
+                flex-direction: column;
+                width: 100%;
+            }
+
+            .search-input {
+                min-width: 100%;
+            }
+
+            .products-grid {
+                grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            }
+
+            .skills-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+
+            /* Todo App Responsive */
+            .todo-app .main-container {
+                padding: 1rem;
+            }
+
+            .todo-app .hero-title {
+                font-size: 2rem;
+            }
+
+            .mode-tabs {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .tab-btn {
+                width: 200px;
+            }
+
+            .notes-container {
+                grid-template-columns: 1fr;
+                grid-template-rows: auto 1fr;
+                height: auto;
+            }
+
+            .notes-sidebar {
+                height: 300px;
+            }
+
+            .note-editor {
+                height: 400px;
+            }
+
+            .editor-header {
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            .editor-actions {
+                justify-content: center;
+            }
+            .content-section {
+                margin-bottom: 60px; /* Add spacing between sections */
+            }
+        }
+    </style>
+</head>
+<body>
+    <div id="homePage" class="page active">
+        <nav class="navbar">
+            <div class="nav-container">
+                <div class="nav-brand">Welcome</div>
+                <div class="nav-right">
+                    <ul class="nav-links">
+                        <li><a onclick="scrollToContact()">Contact</a></li>
+                        <li><a onclick="showPortfolio()">About</a></li>
+                    </ul>
+                    <button class="dark-mode-toggle" onclick="toggleDarkMode()">🌙</button>
+                </div>
+            </div>
+        </nav>
+
+        <div class="main-container">
+            <section class="hero-section">
+                <h1 class="hero-title">Hello I'm Vinuthna</h1>
+                <p class="hero-subtitle">
+                    Welcome! This project showcases my skills in web development, 
+                    featuring a collection of applications including my personal portfolio, 
+                    a productivity todo application, and an e-commerce product store.
+                </p>
+            </section>
+
+            <div class="cards-container">
+                <div class="card portfolio-card" onclick="showPortfolio()">
+                    <div class="card-icon">💼</div>
+                    <h3 class="card-title">Portfolio</h3>
+                    <p class="card-description">
+                        Discover my professional journey, skills, and completed projects. 
+                        A comprehensive showcase of my development experience and technical expertise.
+                    </p>
+                </div>
+
+                <div class="card todo-card" onclick="showTodo()">
+                    <div class="card-icon">✅</div>
+                    <h3 class="card-title">Todo & Notes</h3>
+                    <p class="card-description">
+                        A powerful productivity tool for task management and note-taking. 
+                        Organize your thoughts, manage deadlines, and boost your productivity.
+                    </p>
+                </div>
+
+                <div class="card store-card" onclick="showStore()">
+                    <div class="card-icon">🛒</div>
+                    <h3 class="card-title">Product Store</h3>
+                    <p class="card-description">
+                        A modern e-commerce platform with product browsing, search functionality, 
+                        shopping cart, and secure checkout process for seamless online shopping.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Contact Section -->
+            <section id="contact" class="contact-section">
+                <h2 class="section-title">Get In Touch</h2>
+                <div class="contact-content">
+                    <p class="contact-intro">
+                        I'm always open to discussing new opportunities, collaborations, or just having a chat about technology!
+                    </p>
+                    <div class="contact-links">
+                        <a href="https://www.linkedin.com/in/budde-vinuthna-231642345" target="_blank" class="contact-link linkedin">
+                            <span class="contact-icon">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+                                </svg>
+                            </span>
+                            <span>LinkedIn</span>
+                        </a>
+                        <a href="https://github.com/VINUTHNA1811" target="_blank" class="contact-link github">
+                            <span class="contact-icon">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+                                </svg>
+                            </span>
+                            <span>GitHub</span>
+                        </a>
+                        <a href="mailto:your.email@example.com" class="contact-link email">
+                            <span class="contact-icon">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M24 5.457v13.909c0 .904-.732 1.636-1.636 1.636h-3.819V11.73L12 16.64l-6.545-4.91v9.273H1.636A1.636 1.636 0 0 1 0 19.366V5.457c0-.904.732-1.636 1.636-1.636h1.143l9.221 6.913 9.221-6.913H22.364A1.636 1.636 0 0 1 24 5.457z"/>
+                                </svg>
+                            </span>
+                            <span>Email</span>
+                        </a>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+
+    <!-- Portfolio Page -->
+    <div id="portfolioPage" class="page">
+        <nav class="navbar">
+            <div class="nav-container">
+                <div class="nav-brand">Portfolio</div>
+                <div class="nav-right">
+                    <a href="javascript:void(0)" onclick="showHome()" class="back-btn">
+                        ← Back to Home
+                    </a>
+                    <ul class="nav-links">
+                        <li><a onclick="scrollToSection('about')">About</a></li>
+                        <li><a onclick="scrollToSection('projects')">Projects</a></li>
+                        <li><a onclick="scrollToSection('portfolioContact')">Contact</a></li>
+                    </ul>
+                    <button class="dark-mode-toggle" onclick="toggleDarkMode()">🌙</button>
+                </div>
+            </div>
+        </nav>
+
+        <div class="main-container">
+            <section class="hero-section">
+                <h1 class="hero-title">Hi, I'm <span style="color: var(--accent-color, #8a79ff);">Vinuthna</span></h1>
+                <p class="hero-subtitle"><span class="typed-text"></span></p>
+                <p style="font-size: 1.1rem; color: rgba(255, 255, 255, 0.9); max-width: 700px; margin: 0 auto; text-shadow: 1px 1px 2px rgba(0,0,0,0.2);">
+                    A dedicated Data Science student who enjoys turning complex problems into elegant solutions.
+                    I specialize in front-end web development and I'm exploring AI/ML technologies.
+                </p>
+            </section>
+
+            <section id="about" class="section" style="margin-bottom: 4rem;">
+                <h2 class="section-title">👩‍💻 About Me</h2>
+                <div class="about-content">
+                    <p class="about-text">
+                        I'm Vinuthna, a passionate Data Science enthusiast and web developer with a strong foundation in both analytical thinking and modern web technologies. I enjoy building practical, real-world solutions - whether it’s through predictive modeling, intuitive UI design, or full-stack development. <br>
+                        Currently pursuing my undergraduate studies, I’m working on projects that combine machine learning and software engineering, such as employee salary prediction and autism detection using facial data. I strive to create applications that are not only functional but also user-friendly and impactful.
+                    </p>
+                </div>
+                
+                <div class="skills-section">
+                    <h3 class="skills-title">Technical Skills</h3>
+                    <div class="skills-grid">
+                        <div class="skill-category">
+                            <h4>Frontend</h4>
+                            <div class="skill-tags">
+                                <span class="skill-tag">HTML/CSS</span>
+                                <span class="skill-tag">JavaScript</span>
+                                <span class="skill-tag">React</span>
+                                <span class="skill-tag">Responsive Design</span>
+                            </div>
+                        </div>
+                        <div class="skill-category">
+                            <h4>Backend & Data</h4>
+                            <div class="skill-tags">
+                                <span class="skill-tag">Python</span>
+                                <span class="skill-tag">Node.js</span>
+                                <span class="skill-tag">Machine Learning</span>
+                                <span class="skill-tag">Data Science</span>
+                            </div>
+                        </div>
+                        <div class="skill-category">
+                            <h4>Tools & Others</h4>
+                            <div class="skill-tags">
+                                <span class="skill-tag">Git</span>
+                                <span class="skill-tag">GitHub</span>
+                                <span class="skill-tag">CNN</span>
+                                <span class="skill-tag">Deep Learning</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="projects" class="section" style="margin-bottom: 4rem;">
+                <h2 class="section-title">📁 My Projects</h2>
+                <div class="projects-grid">
+
+                    <div class="project-card">
+                        <h3>Employee Salary Prediction</h3>
+                        <p>A machine learning web application that predicts whether an employee earns more than $50K/year based on demographic and professional information.</p>
+                        <a href="https://employeesalarypredictiongit-vin.streamlit.app/" target="_blank" class="project-link">
+                            View live app
+                        </a><br><br>
+                        <a href="https://github.com/VINUTHNA1811/Employee_Salary_Prediction.git" target="_blank" class="project-link">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+                            </svg>
+                            View on GitHub
+                        </a>
+                    </div>
+
+                    <div class="project-card">
+                        <h3>Autism Detection using Static Facial Features</h3>
+                        <p>A deep learning project using CNN to detect Autism Spectrum Disorder from facial features. This project demonstrates advanced machine learning techniques for healthcare applications.</p>
+                        <a href="https://github.com/VINUTHNA1811/AutismDetection-facialfeatures-dnn.git" target="_blank" class="project-link">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.30 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+                            </svg>
+                            View on GitHub
+                        </a>
+                    </div>
+
+                    <div class="project-card">
+                        <h3>YogaMate – Personalized Yoga Guide</h3>
+                        <p>A posture assistant web app guiding users through yoga poses using clean UI and JavaScript logic. Features interactive pose guidance and user-friendly interface.</p>
+                        <a href="https://github.com/VINUTHNA1811/YogaMate.git" target="_blank" class="project-link">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.30 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+                            </svg>
+                            View on GitHub
+                        </a>
+                    </div>
+
+                    <div class="project-card">
+                        <h3>Interactive Quiz App</h3>
+                        <p>An engaging quiz platform with category selection, API-driven questions, dark mode, and jokes. Built with modern JavaScript and responsive design.</p>
+                        <a href="https://github.com/VINUTHNA1811/ApexPlanet_Task3_InteractiveQuiz" target="_blank" class="project-link">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.30 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+                            </svg>
+                            View on GitHub
+                        </a>
+                    </div>
+
+                    <div class="project-card">
+                        <h3>Contact Form + Image Gallery</h3>
+                        <p>Responsive contact form with validation, image upload from device or URL, preview, and delete functionality. Demonstrates form handling and file management.</p>
+                        <a href="https://github.com/VINUTHNA1811/ApexPlanet_Task2_ImageGallery" target="_blank" class="project-link">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.30 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+                            </svg>
+                            View on GitHub
+                        </a>
+                    </div>
+                </div>
+            </section>
+
+            <section id="portfolioContact" class="section">
+                <h2 class="section-title">📬 Get in Touch</h2>
+                <div class="contact-content">
+                    <p class="contact-intro">
+                        Let's connect! I'm always open to discussing new opportunities and collaborations.
+                    </p>
+                    <div class="contact-links">
+                        <a href="https://www.linkedin.com/in/budde-vinuthna-231642345" target="_blank" class="contact-link linkedin">
+                            <span class="contact-icon">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+                                </svg>
+                            </span>
+                            <span>LinkedIn</span>
+                        </a>
+                        <a href="https://github.com/VINUTHNA1811" target="_blank" class="contact-link github">
+                            <span class="contact-icon">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.30 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+                            </svg>
+                            <span>GitHub</span>
+                        </a>
+                        <a href="mailto:your.email@example.com" class="contact-link email">
+                            <span class="contact-icon">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M24 5.457v13.909c0 .904-.732 1.636-1.636 1.636h-3.819V11.73L12 16.64l-6.545-4.91v9.273H1.636A1.636 1.636 0 0 1 0 19.366V5.457c0-.904.732-1.636 1.636-1.636h1.143l9.221 6.913 9.221-6.913H22.364A1.636 1.636 0 0 1 24 5.457z"/>
+                                </svg>
+                            </span>
+                            <span>Email</span>
+                        </a>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+
+    <!-- Todo Page -->
+    <div id="todoPage" class="page todo-app">
+        <nav class="navbar">
+            <div class="nav-container">
+                <div class="nav-brand">📝 Todo & Notes</div>
+                <div class="nav-right">
+                    <a href="javascript:void(0)" onclick="showHome()" class="back-btn" style="color: rgb(3, 168, 233);">
+                        ← Back to Home
+                    </a>
+                    <button class="dark-mode-toggle" onclick="toggleDarkMode()">🌙</button>
+                </div>
+            </div>
+        </nav>
+
+        <div class="main-container">
+            <section class="hero-section">
+                <h1 class="hero-title">Productivity Hub</h1>
+                <p class="hero-subtitle">Organize your tasks and capture your thoughts in one powerful application</p>
+            </section>
+
+            <div class="mode-tabs">
+                <button class="tab-btn active" onclick="switchTodoTab('todo')">
+                    ✅ Todo Manager
+                </button>
+                <button class="tab-btn" onclick="switchTodoTab('notes')">
+                    📝 Notes & Ideas
+                </button>
+            </div>
+
+            <!-- Todo Section -->
+            <div id="todoSection" class="content-section active">
+                <div class="todo-container">
+                    <div class="todo-input-section">
+                        <input type="text" class="todo-input" id="todoInput" placeholder="Add a new task..." maxlength="100">
+                        <select class="priority-select" id="prioritySelect">
+                            <option value="low">Low Priority</option>
+                            <option value="medium" selected>Medium Priority</option>
+                            <option value="high">High Priority</option>
+                        </select>
+                        <button class="add-todo-btn" onclick="addTodo()">Add Task</button>
+                    </div><br><br>
+
+                    <div class="todo-filters">
+                        <button class="filter-btn active" onclick="filterTodos('all', event)">All Tasks</button>
+                        <button class="filter-btn" onclick="filterTodos('active', event)">Active</button>
+                        <button class="filter-btn" onclick="filterTodos('completed', event)">Completed</button>
+                        <button class="filter-btn" onclick="filterTodos('high', event)">High Priority</button>
+                    </div>
+
+                    <div class="todo-list" id="todoList">
+                        <!-- Todos will be dynamically added here -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- Notes Section -->
+            <div id="notesSection" class="content-section">
+                <div class="notes-container">
+                    <div class="notes-sidebar">
+                        <button class="new-note-btn" onclick="createNewNote()">+ New Note</button>
+                        <div class="notes-list" id="notesList">
+                            <!-- Notes will be dynamically added here -->
+                        </div>
+                    </div>
+
+                    <div class="note-editor">
+                        <div id="emptyState" class="empty-state">
+                            <div class="empty-state-icon">📝</div>
+                            <h3>Select a note to start editing</h3>
+                            <p>Create a new note or choose an existing one from the sidebar</p>
+                        </div>
+
+                        <div id="editorContent" style="display: none; height: 100%; flex-direction: column;">
+                            <div class="editor-header">
+                                <input type="text" class="note-title-input" id="noteTitleInput" placeholder="Note title...">
+                                <div class="editor-actions">
+                                    <button class="editor-btn save-btn" onclick="saveCurrentNote()">💾 Save</button>
+                                    <button class="editor-btn" onclick="deleteCurrentNote()">🗑️ Delete</button>
+                                </div>
+                            </div>
+                            <textarea class="note-content" id="noteContentInput" placeholder="Start writing your note..."></textarea>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Store Page -->
+    <div id="storePage" class="page store-app">
+        <nav class="navbar">
+            <div class="nav-container">
+                <div class="nav-brand">🛒 Product Store</div>
+                <div class="nav-right">
+                    <a href="javascript:void(0)" onclick="showHome()" class="back-btn">
+                        ← Back to Home
+                    </a>
+                    <button class="dark-mode-toggle" onclick="toggleDarkMode()">🌙</button>
+                </div>
+            </div>
+        </nav>
+
+        <div class="main-container">
+            <section class="hero-section">
+                <h1 class="hero-title">Welcome to Our Store</h1>
+                <p class="hero-subtitle">Discover amazing products with great deals and fast shipping</p>
+            </section>
+
+            <div class="store-header">
+                <div class="search-section">
+                    <input type="text" class="search-input" id="searchInput" placeholder="Search products..." onkeyup="searchProducts()">
+                    <select class="category-filter" id="categoryFilter" onchange="filterByCategory()">
+                        <option value="">All Categories</option>
+                        <option value="electronics">Electronics</option>
+                        <option value="jewelery">Jewelry</option>
+                        <option value="men's clothing">Men's Clothing</option>
+                        <option value="women's clothing">Women's Clothing</option>
+                    </select>
+                </div>
+                <button class="cart-btn" onclick="toggleCart()">
+                    🛒 Cart (<span id="cartCount">0</span>)
+                    <span class="cart-count" id="cartCountBadge" style="display: none;">0</span>
+                </button>
+            </div>
+
+            <div id="loadingMessage" class="loading">
+                <h3>Loading amazing products...</h3>
+                <p>Please wait while we fetch the latest items for you!</p>
+            </div>
+
+            <div class="products-grid" id="productsGrid">
+                <!-- Products will be dynamically loaded here -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Cart Modal -->
+    <div id="cartModal" class="cart-modal" style="display: none;">
+        <div class="cart-content">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem;">
+                <h2 style="margin: 0; color: #2c3e50;">Shopping Cart</h2>
+                <button onclick="toggleCart()" style="background: none; border: none; font-size: 1.5rem; cursor: pointer; color: #666;">×</button>
+            </div>
+            <div id="cartItems">
+                <!-- Cart items will be displayed here -->
+            </div>
+            <div class="total-section">
+                <div class="total-amount" id="totalAmount">Total: $0.00</div>
+                <button class="checkout-btn" onclick="checkout()">Proceed to Checkout</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Application state
+        let currentPage = 'home';
+        let products = [];
+        let cart = [];
+        let filteredProducts = [];
+
+        // Todo & Notes state
+        let todos = [];
+        let notes = [];
+        let currentNoteId = null;
+        let currentFilter = 'all';
+        let todoIdCounter = 1;
+        let noteIdCounter = 1;
+
+        // Initialize application
+        document.addEventListener('DOMContentLoaded', function() {
+            loadStoreData();
+            loadTodoAndNotesData(); // Load data for todo and notes
+            renderProducts();
+            updateCartUI();
+            renderTodos(); // Render todos on load
+            renderNotes(); // Render notes on load
+            
+            // Add search functionality for store
+            const searchInput = document.getElementById('searchInput');
+            if (searchInput) {
+                searchInput.addEventListener('input', searchProducts);
+            }
+
+            // Add enter key support for todo input
+            const todoInput = document.getElementById('todoInput');
+            if (todoInput) {
+                todoInput.addEventListener('keypress', function(e) {
+                    if (e.key === 'Enter') {
+                        addTodo();
+                    }
+                });
+            }
+
+            // Auto-save notes
+            let saveTimeout;
+            function autoSave() {
+                clearTimeout(saveTimeout);
+                saveTimeout = setTimeout(() => {
+                    if (currentNoteId) saveCurrentNote();
+                }, 2000);
+            }
+
+            const noteTitleInput = document.getElementById('noteTitleInput');
+            const noteContentInput = document.getElementById('noteContentInput');
+            if (noteTitleInput) noteTitleInput.addEventListener('input', autoSave);
+            if (noteContentInput) noteContentInput.addEventListener('input', autoSave);
+        });
+
+        // Page navigation functions
+        function showHome() {
+            hideAllPages();
+            document.getElementById('homePage').classList.add('active');
+            currentPage = 'home';
+            updateNavbar();
+        }
+
+        function showPortfolio() {
+            hideAllPages();
+            document.getElementById('portfolioPage').classList.add('active');
+            currentPage = 'portfolio';
+            updateNavbar();
+            
+            // Start typing animation for portfolio
+            setTimeout(() => {
+                typeLoop();
+            }, 100);
+        }
+
+        function showTodo() {
+            hideAllPages();
+            document.getElementById('todoPage').classList.add('active');
+            currentPage = 'todo';
+            updateNavbar();
+            // Ensure todo section is active by default when showing todo page
+            switchTodoTab('todo');
+        }
+
+        function showStore() {
+            hideAllPages();
+            document.getElementById('storePage').classList.add('active');
+            currentPage = 'store';
+            updateNavbar();
+            if (products.length === 0) {
+                loadStoreData();
+            }
+        }
+
+        function hideAllPages() {
+            document.querySelectorAll('.page').forEach(page => {
+                page.classList.remove('active');
+            });
+        }
+
+        function updateNavbar() {
+            // Update gradient based on current page
+            const body = document.body;
+            body.classList.remove('todo-app', 'store-app');
+            
+            if (currentPage === 'todo') {
+                body.classList.add('todo-app');
+            } else if (currentPage === 'store') {
+                body.classList.add('store-app');
+            }
+        }
+
+        // Scroll functions
+        function scrollToContact() {
+            const contactSection = document.getElementById('contact');
+            if (contactSection) {
+                contactSection.scrollIntoView({ behavior: 'smooth' });
+            }
+        }
+
+        function scrollToSection(sectionId) {
+            const section = document.getElementById(sectionId);
+            if (section) {
+                section.scrollIntoView({ behavior: 'smooth' });
+            }
+        }
+
+        // Portfolio typing animation
+        const phrases = ["Data Science Aspirant", "Web Development Intern", "Tech Enthusiast", "AI Explorer"];
+        let i = 0, j = 0, isDeleting = false;
+
+        function typeLoop() {
+            const typedText = document.querySelector('.typed-text');
+            if (typedText && currentPage === 'portfolio') {
+                const currentPhrase = phrases[i];
+                if (!isDeleting) {
+                    typedText.textContent = currentPhrase.substring(0, j);
+                    j++;
+                    if (j === currentPhrase.length + 1) {
+                        isDeleting = true;
+                        setTimeout(typeLoop, 1200);
+                        return;
+                    }
+                } else {
+                    typedText.textContent = currentPhrase.substring(0, j);
+                    j--;
+                    if (j === 0) {
+                        isDeleting = false;
+                        i = (i + 1) % phrases.length;
+                    }
+                }
+                setTimeout(typeLoop, isDeleting ? 60 : 120);
+            }
+        }
+
+        // Dark mode toggle
+        function toggleDarkMode() {
+            document.body.classList.toggle('dark-mode');
+            const toggles = document.querySelectorAll('.dark-mode-toggle');
+            toggles.forEach(toggle => {
+                toggle.textContent = document.body.classList.contains('dark-mode') ? '☀️' : '🌙';
+            });
+        }
+
+        // Todo & Notes functions (Integrated from todo.html)
+
+        // Tab switching for Todo/Notes
+        function switchTodoTab(tab) {
+            document.querySelectorAll('.mode-tabs .tab-btn').forEach(btn => btn.classList.remove('active'));
+            // Find the button that was clicked and add active class
+            document.querySelector(`.mode-tabs .tab-btn[onclick="switchTodoTab('${tab}')"]`).classList.add('active');
+            
+            document.querySelectorAll('.content-section').forEach(section => section.classList.remove('active'));
+            document.getElementById(tab + 'Section').classList.add('active');
+
+            // Handle display style for notes section specifically
+            if (tab === 'notes') {
+                document.getElementById('notesSection').style.display = 'block';
+                document.getElementById('todoSection').style.display = 'none';
+            } else {
+                document.getElementById('todoSection').style.display = 'block';
+                document.getElementById('notesSection').style.display = 'none';
+            }
+        }
+
+        // Todo functions
+        function addTodo() {
+            const input = document.getElementById('todoInput');
+            const priority = document.getElementById('prioritySelect').value;
+            const text = input.value.trim();
+            
+            if (!text) {
+                console.log('Please enter a task!'); // Replaced alert
+                return;
+            }
+            
+            const newTodo = {
+                id: todoIdCounter++,
+                text: text,
+                completed: false,
+                priority: priority,
+                createdAt: new Date()
+            };
+            
+            todos.unshift(newTodo);
+            input.value = '';
+            renderTodos();
+            saveTodoAndNotesData();
+        }
+
+        function toggleTodo(id) {
+            const todo = todos.find(t => t.id === id);
+            if (todo) {
+                todo.completed = !todo.completed;
+                renderTodos();
+                saveTodoAndNotesData();
+            }
+        }
+
+        function deleteTodo(id) {
+            todos = todos.filter(t => t.id !== id);
+            renderTodos();
+            saveTodoAndNotesData();
+        }
+
+        function filterTodos(filter, event) {
+            currentFilter = filter;
+            document.querySelectorAll('.todo-filters .filter-btn').forEach(btn => btn.classList.remove('active'));
+            if (event && event.target) { // Check if event is provided and has a target
+                event.target.classList.add('active');
+            } else { // Fallback for initial render or direct calls without an event
+                const defaultButton = document.querySelector(`.todo-filters .filter-btn[onclick="filterTodos('${filter}', event)"]`);
+                if (defaultButton) defaultButton.classList.add('active');
+            }
+            renderTodos();
+        }
+
+        function renderTodos() {
+            const todoList = document.getElementById('todoList');
+            if (!todoList) return;
+            
+            let filteredTodos = todos;
+            
+            switch(currentFilter) {
+                case 'active':
+                    filteredTodos = todos.filter(t => !t.completed);
+                    break;
+                case 'completed':
+                    filteredTodos = todos.filter(t => t.completed);
+                    break;
+                case 'high':
+                    filteredTodos = todos.filter(t => t.priority === 'high');
+                    break;
+            }
+            
+            if (filteredTodos.length === 0) {
+                todoList.innerHTML = `
+                    <div class="empty-state">
+                        <div class="empty-state-icon">📋</div>
+                        <h3>No tasks found</h3>
+                        <p>Add a new task to get started!</p>
+                    </div>
+                `;
+                return;
+            }
+            
+            todoList.innerHTML = filteredTodos.map(todo => `
+                <div class="todo-item ${todo.completed ? 'completed' : ''} ${todo.priority}-priority">
+                    <input type="checkbox" class="todo-checkbox" ${todo.completed ? 'checked' : ''} 
+                           onchange="toggleTodo(${todo.id})">
+                    <span class="todo-text">${todo.text}</span>
+                    <span class="todo-priority">${todo.priority}</span>
+                    <div class="todo-actions">
+                        <button class="todo-btn delete-btn" onclick="deleteTodo(${todo.id})" title="Delete task">
+                            🗑️
+                        </button>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // Notes functions
+        function createNewNote() {
+            const lastNote = notes[0];
+            // Replaced confirm with console.log for Canvas environment
+            if (lastNote && !lastNote.title.trim() && !lastNote.content.trim()) {
+                console.log("You have an unsaved empty note. Discard it and create a new one?");
+                // In a real app, you'd show a custom modal here. For now, we proceed.
+            }
+
+            const newNote = {
+                id: noteIdCounter++,
+                title: 'Untitled Note',
+                content: '',
+                createdAt: new Date(),
+                updatedAt: new Date()
+            };
+            
+            notes.unshift(newNote);
+            currentNoteId = newNote.id;
+            renderNotes();
+            showEditor();
+            saveTodoAndNotesData();
+            
+            setTimeout(() => {
+                const titleInput = document.getElementById('noteTitleInput');
+                if (titleInput) titleInput.focus();
+            }, 100);
+        }
+
+        function selectNote(id) {
+            currentNoteId = id;
+            renderNotes();
+            showEditor();
+        }
+
+        function showEditor() {
+            const note = notes.find(n => n.id === currentNoteId);
+            if (!note) return;
+            
+            const emptyState = document.getElementById('emptyState');
+            const editorContent = document.getElementById('editorContent');
+            
+            if (emptyState) emptyState.style.display = 'none';
+            if (editorContent) {
+                editorContent.style.display = 'flex';
+                
+                const titleInput = document.getElementById('noteTitleInput');
+                const contentInput = document.getElementById('noteContentInput');
+                
+                if (titleInput) titleInput.value = note.title;
+                if (contentInput) contentInput.value = note.content;
+            }
+        }
+
+        function saveCurrentNote() {
+            if (!currentNoteId) return;
+            
+            const note = notes.find(n => n.id === currentNoteId);
+            if (!note) return;
+            
+            const titleInput = document.getElementById('noteTitleInput');
+            const contentInput = document.getElementById('noteContentInput');
+            
+            const title = titleInput ? titleInput.value.trim() || 'Untitled Note' : 'Untitled Note';
+            const content = contentInput ? contentInput.value : '';
+            
+            note.title = title;
+            note.content = content;
+            note.updatedAt = new Date();
+            
+            renderNotes();
+            saveTodoAndNotesData();
+            
+            // Show save confirmation
+            const saveBtn = document.querySelector('.save-btn');
+            if (saveBtn) {
+                const originalText = saveBtn.textContent;
+                saveBtn.textContent = '✅ Saved!';
+                setTimeout(() => {
+                    saveBtn.textContent = originalText;
+                }, 1500);
+            }
+        }
+
+        function deleteCurrentNote() {
+            // Replaced confirm with console.log for Canvas environment
+            if (!currentNoteId) return;
+            console.log('Are you sure you want to delete this note?');
+            // In a real app, you'd show a custom modal here. For now, we proceed.
+            
+            notes = notes.filter(n => n.id !== currentNoteId);
+            currentNoteId = null;
+            
+            const emptyState = document.getElementById('emptyState');
+            const editorContent = document.getElementById('editorContent');
+            
+            if (emptyState) emptyState.style.display = 'flex';
+            if (editorContent) editorContent.style.display = 'none';
+            
+            renderNotes();
+            saveTodoAndNotesData();
+        }
+
+        function renderNotes() {
+            const notesList = document.getElementById('notesList');
+            if (!notesList) return;
+            
+            if (notes.length === 0) {
+                notesList.innerHTML = `
+                    <div class="empty-state">
+                        <div class="empty-state-icon">📝</div>
+                        <h4>No notes yet</h4>
+                        <p>Create your first note!</p>
+                    </div>
+                `;
+                return;
+            }
+            
+            notesList.innerHTML = notes.map(note => {
+                const preview = note.content.substring(0, 100) + (note.content.length > 100 ? '...' : '');
+                const isActive = note.id === currentNoteId;
+                
+                return `
+                    <div class="note-item ${isActive ? 'active' : ''}" onclick="selectNote(${note.id})">
+                        <div class="note-title">${note.title}</div>
+                        <div class="note-preview">${preview || 'No content'}</div>
+                        <div class="note-date">${formatDate(note.updatedAt)}</div>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        // Utility for date formatting
+        function formatDate(date) {
+            const now = new Date();
+            const diff = now - new Date(date);
+            const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+
+            if (days === 0) return 'Today';
+            if (days === 1) return 'Yesterday';
+            if (days < 7) return `${days} days ago`;
+
+            return new Date(date).toLocaleDateString();
+        }
+
+        // Local Storage for Todo & Notes
+        function saveTodoAndNotesData() {
+            const data = {
+                todos,
+                notes,
+                todoIdCounter,
+                noteIdCounter
+            };
+            localStorage.setItem('productivityAppData', JSON.stringify(data));
+        }
+
+        function loadTodoAndNotesData() {
+            const saved = localStorage.getItem('productivityAppData');
+            if (saved) {
+                const parsed = JSON.parse(saved);
+                todos = parsed.todos || [];
+                notes = parsed.notes || [];
+                todoIdCounter = parsed.todoIdCounter || 1;
+                noteIdCounter = parsed.noteIdCounter || 1;
+            } else {
+                // Sample default data (you can customize this)
+                todos = [
+                    {
+                        id: 1,
+                        text: "Complete the Todo application",
+                        completed: true,
+                        priority: "high",
+                        createdAt: new Date(Date.now() - 86400000)
+                    },
+                    {
+                        id: 2,
+                        text: "Design the notes interface",
+                        completed: false,
+                        priority: "medium",
+                        createdAt: new Date(Date.now() - 3600000)
+                    },
+                    {
+                        id: 3,
+                        text: "Test dark mode functionality",
+                        completed: false,
+                        priority: "low",
+                        createdAt: new Date()
+                    }
+                ];
+
+                notes = [
+                    {
+                        id: 1,
+                        title: "Project Ideas",
+                        content: "1. Todo & Notes App ✅\n2. E-commerce Store\n3. Weather Dashboard\n4. Chat Application\n\nFocus on user experience and modern design patterns.",
+                        createdAt: new Date(Date.now() - 172800000),
+                        updatedAt: new Date(Date.now() - 3600000)
+                    },
+                    {
+                        id: 2,
+                        title: "Learning Goals",
+                        content: "This week I want to focus on:\n- Advanced CSS animations\n- JavaScript ES6+ features\n- React hooks and context\n- Node.js backend development\n\nPractice makes perfect!",
+                        createdAt: new Date(Date.now() - 86400000),
+                        updatedAt: new Date(Date.now() - 1800000)
+                    }
+                ];
+
+                todoIdCounter = 4;
+                noteIdCounter = 3;
+            }
+        }
+
+
+        // Store functions (from home.html, renamed loadData to loadStoreData)
+        async function loadStoreData() {
+            try {
+                const loadingMessage = document.getElementById('loadingMessage');
+                if (loadingMessage) loadingMessage.style.display = 'block';
+                
+                const response = await fetch('https://fakestoreapi.com/products');
+                products = await response.json();
+                filteredProducts = [...products];
+                renderProducts();
+                
+                if (loadingMessage) loadingMessage.style.display = 'none';
+            } catch (error) {
+                console.error('Error loading products:', error);
+                const productsGrid = document.getElementById('productsGrid');
+                if (productsGrid) {
+                    productsGrid.innerHTML = `
+                        <div style="text-align: center; padding: 2rem; color: #666; grid-column: 1 / -1;">
+                            <h3>Unable to load products</h3>
+                            <p>Please check your internet connection and try again.</p>
+                            <button onclick="loadStoreData()" style="background: linear-gradient(45deg, #fa709a, #fee140); color: white; border: none; padding: 1rem 2rem; border-radius: 25px; cursor: pointer; margin-top: 1rem;">Retry</button>
+                        </div>
+                    `;
+                }
+                const loadingMessage = document.getElementById('loadingMessage');
+                if (loadingMessage) loadingMessage.style.display = 'none';
+            }
+        }
+
+        function renderProducts() {
+            const productsGrid = document.getElementById('productsGrid');
+            if (!productsGrid) return;
+            
+            if (filteredProducts.length === 0) {
+                productsGrid.innerHTML = `
+                    <div style="text-align: center; padding: 2rem; color: #666; grid-column: 1 / -1;">
+                        <h3>No products found</h3>
+                        <p>Try adjusting your search or filter criteria.</p>
+                    </div>
+                `;
+                return;
+            }
+            
+            productsGrid.innerHTML = filteredProducts.map(product => {
+                const isInCart = cart.some(item => item.id === product.id);
+                const stars = '★'.repeat(Math.floor(product.rating.rate)) + '☆'.repeat(5 - Math.floor(product.rating.rate));
+                
+                return `
+                    <div class="product-card">
+                        <img src="${product.image}" alt="${product.title}" class="product-image">
+                        <div class="product-category">${product.category}</div>
+                        <h3 class="product-title">${product.title}</h3>
+                        <div class="product-price">$${product.price.toFixed(2)}</div>
+                        <div class="product-rating">
+                            <span class="stars">${stars}</span>
+                            <span>(${product.rating.count})</span>
+                        </div>
+                        <button onclick="addToCart(${product.id})" ${isInCart ? 'disabled' : ''} 
+                                class="add-to-cart-btn">
+                            ${isInCart ? '✓ In Cart' : '🛒 Add to Cart'}
+                        </button>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        function searchProducts() {
+            const searchTerm = document.getElementById('searchInput').value.toLowerCase();
+            const selectedCategory = document.getElementById('categoryFilter').value;
+            
+            filteredProducts = products.filter(product => {
+                const matchesSearch = product.title.toLowerCase().includes(searchTerm) || 
+                                    product.description.toLowerCase().includes(searchTerm);
+                const matchesCategory = !selectedCategory || product.category === selectedCategory;
+                return matchesSearch && matchesCategory;
+            });
+            
+            renderProducts();
+        }
+
+        function filterByCategory() {
+            searchProducts(); // Reuse search logic
+        }
+
+        function addToCart(productId) {
+            const product = products.find(p => p.id === productId);
+            if (!product) return;
+            
+            const existingItem = cart.find(item => item.id === productId);
+            if (existingItem) {
+                existingItem.quantity += 1;
+            } else {
+                cart.push({
+                    ...product,
+                    quantity: 1
+                });
+            }
+            
+            updateCartUI();
+            renderProducts(); // Re-render to update button states
+        }
+
+        function removeFromCart(productId) {
+            cart = cart.filter(item => item.id !== productId);
+            updateCartUI();
+            renderCart();
+            renderProducts();
+        }
+
+        function updateQuantity(productId, change) {
+            const item = cart.find(item => item.id === productId);
+            if (!item) return;
+            
+            item.quantity += change;
+            if (item.quantity <= 0) {
+                removeFromCart(productId);
+            } else {
+                updateCartUI();
+                renderCart();
+            }
+        }
+
+        function updateCartUI() {
+            const cartCount = cart.reduce((total, item) => total + item.quantity, 0);
+            const cartCountElement = document.getElementById('cartCount');
+            const cartCountBadge = document.getElementById('cartCountBadge');
+            
+            if (cartCountElement) cartCountElement.textContent = cartCount;
+            if (cartCountBadge) {
+                cartCountBadge.textContent = cartCount;
+                cartCountBadge.style.display = cartCount > 0 ? 'flex' : 'none';
+            }
+        }
+
+        function toggleCart() {
+            const cartModal = document.getElementById('cartModal');
+            if (!cartModal) return;
+            
+            if (cartModal.style.display === 'none' || !cartModal.style.display) {
+                cartModal.style.display = 'flex';
+                renderCart();
+            } else {
+                cartModal.style.display = 'none';
+            }
+        }
+
+        function renderCart() {
+            const cartItems = document.getElementById('cartItems');
+            const totalAmount = document.getElementById('totalAmount');
+            
+            if (!cartItems || !totalAmount) return;
+            
+            if (cart.length === 0) {
+                cartItems.innerHTML = `
+                    <div style="text-align: center; padding: 2rem; color: #666;">
+                        <div style="font-size: 4rem; margin-bottom: 1rem; opacity: 0.5;">🛒</div>
+                        <h3>Your cart is empty</h3>
+                        <p>Add some products to get started!</p>
+                    </div>
+                `;
+                totalAmount.textContent = 'Total: $0.00';
+                return;
+            }
+            
+            let total = 0;
+            cartItems.innerHTML = cart.map(item => {
+                const itemTotal = item.price * item.quantity;
+                total += itemTotal;
+                
+                return `
+                    <div class="cart-item">
+                        <img src="${item.image}" alt="${item.title}" class="cart-item-image">
+                        <div class="cart-item-details">
+                            <div class="cart-item-title">${item.title}</div>
+                            <div class="cart-item-price">$${item.price.toFixed(2)} each</div>
+                        </div>
+                        <div class="quantity-controls">
+                            <button onclick="updateQuantity(${item.id}, -1)" class="quantity-btn">-</button>
+                            <span>${item.quantity}</span>
+                            <button onclick="updateQuantity(${item.id}, 1)" class="quantity-btn">+</button>
+                        </div>
+                        <button onclick="removeFromCart(${item.id})" style="background: none; border: none; color: #ff4757; cursor: pointer; font-size: 1.2rem; padding: 0.5rem;" title="Remove from cart">🗑️</button>
+                    </div>
+                `;
+            }).join('');
+            
+            totalAmount.textContent = `Total: $${total.toFixed(2)}`;
+        }
+
+        function checkout() {
+            if (cart.length === 0) {
+                console.log('Your cart is empty!'); // Replaced alert
+                return;
+            }
+            
+            const total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+            const itemCount = cart.reduce((sum, item) => sum + item.quantity, 0);
+            
+            alert(`Thank you for your purchase!\n\nItems: ${itemCount}\nTotal: $${total.toFixed(2)}\n\nOrder placed successfully!`); // Replaced alert
+            cart = [];
+            updateCartUI();
+            renderCart();
+            renderProducts();
+        }
+    </script>
+</body>
+</html>
