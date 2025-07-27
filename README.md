@@ -1,4 +1,4 @@
-# 🚀 Vinuthna's Multi-Application Website
+# 🚀 Multi-Application Website
 
 A modern, responsive website featuring multiple interactive applications built with **HTML, CSS, and JavaScript**. This project demonstrates frontend development proficiency through **three fully functional applications**, all seamlessly integrated into a single-page layout.
 
